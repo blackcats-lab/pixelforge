@@ -107,6 +107,7 @@ export default function HomePage() {
       <Header onClear={handleClear} showClear={!!image} />
 
       <main className="flex-1">
+        <h1 className="sr-only">PixelForge — ブラウザ完結型 画像リサイズツール</h1>
         <AnimatePresence mode="wait">
           {!image ? (
             <DropZone
