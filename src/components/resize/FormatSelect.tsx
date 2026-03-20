@@ -19,8 +19,8 @@ export default function FormatSelect({
 }: FormatSelectProps) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        Format
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+        出力フォーマット
       </label>
       <div className="flex gap-1.5">
         {FORMATS.map((f) => (

@@ -5,7 +5,7 @@ interface ImagePreviewProps {
   alt?: string;
 }
 
-export default function ImagePreview({ src, alt = "Preview" }: ImagePreviewProps) {
+export default function ImagePreview({ src, alt = "プレビュー" }: ImagePreviewProps) {
   return (
     <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Checkerboard background for transparency */}

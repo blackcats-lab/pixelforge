@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PixelForge — Browser-based Image Resizer",
+  title: "PixelForge — ブラウザ完結型 画像リサイズツール",
   description:
-    "Resize images directly in your browser. No uploads, no servers — your images stay private. Supports PNG, JPEG, WebP with quality control.",
+    "ブラウザ上で画像をリサイズ。サーバーへのアップロード不要で、プライバシーを守ります。PNG, JPEG, WebP対応、品質調整も可能。",
   openGraph: {
-    title: "PixelForge — Browser-based Image Resizer",
+    title: "PixelForge — ブラウザ完結型 画像リサイズツール",
     description:
-      "Resize images directly in your browser. No uploads, no servers — your images stay private.",
+      "ブラウザ上で画像をリサイズ。サーバーへのアップロード不要で、プライバシーを守ります。",
     type: "website",
   },
 };
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="ja"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >

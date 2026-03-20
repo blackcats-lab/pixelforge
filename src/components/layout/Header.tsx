@@ -26,6 +26,9 @@ export default function Header({ onClear, showClear }: HeaderProps) {
           <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
             PixelForge
           </span>
+          <span className="text-xs font-normal text-gray-400 dark:text-gray-500 hidden sm:inline">
+            画像リサイズ
+          </span>
         </Link>
 
         <div className="flex items-center gap-2">
@@ -34,14 +37,14 @@ export default function Header({ onClear, showClear }: HeaderProps) {
             className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Layers className="w-4 h-4" />
-            <span className="hidden sm:inline">Batch</span>
+            <span className="hidden sm:inline">一括処理</span>
           </Link>
 
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
+              aria-label="テーマを切り替える"
             >
               {theme === "dark" ? (
                 <Sun className="w-4 h-4" />
@@ -57,7 +60,7 @@ export default function Header({ onClear, showClear }: HeaderProps) {
               className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-red-600 dark:text-red-400"
             >
               <RotateCcw className="w-4 h-4" />
-              <span className="hidden sm:inline">Clear</span>
+              <span className="hidden sm:inline">クリア</span>
             </button>
           )}
         </div>

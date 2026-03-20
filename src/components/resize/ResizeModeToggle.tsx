@@ -11,8 +11,8 @@ export default function ResizeModeToggle({
 }: ResizeModeToggleProps) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        Mode
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+        リサイズモード
       </label>
       <div className="flex gap-1.5">
         <button
@@ -23,7 +23,7 @@ export default function ResizeModeToggle({
               : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
           }`}
         >
-          Smooth
+          スムーズ
         </button>
         <button
           onClick={() => onSmoothingChange(false)}
@@ -33,7 +33,7 @@ export default function ResizeModeToggle({
               : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
           }`}
         >
-          Pixel Perfect
+          ドット絵向け
         </button>
       </div>
     </div>

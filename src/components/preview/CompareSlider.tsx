@@ -18,10 +18,10 @@ export default function CompareSlider({
     <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
       <ReactCompareSlider
         itemOne={
-          <ReactCompareSliderImage src={originalSrc} alt="Original" />
+          <ReactCompareSliderImage src={originalSrc} alt="元の画像" />
         }
         itemTwo={
-          <ReactCompareSliderImage src={resizedSrc} alt="Resized" />
+          <ReactCompareSliderImage src={resizedSrc} alt="リサイズ後" />
         }
         className="max-h-[50vh]"
       />

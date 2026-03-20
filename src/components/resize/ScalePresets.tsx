@@ -9,8 +9,8 @@ interface ScalePresetsProps {
 export default function ScalePresets({ onApply }: ScalePresetsProps) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        Scale
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+        倍率
       </label>
       <div className="grid grid-cols-4 gap-1.5">
         {SCALE_PRESETS.map((preset) => (

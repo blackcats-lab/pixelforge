@@ -18,7 +18,7 @@ export default function DownloadButton({
       className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
     >
       <Download className="w-4 h-4" />
-      Download
+      ダウンロード
     </button>
   );
 }

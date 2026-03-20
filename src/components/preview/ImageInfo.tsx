@@ -34,20 +34,20 @@ export default function ImageInfo({
       </p>
       <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 dark:text-gray-400">
         <div>
-          <span className="block text-gray-400 dark:text-gray-500">Original</span>
+          <span className="block text-gray-400 dark:text-gray-500">元の画像</span>
           <span>
             {originalWidth} × {originalHeight} ({formatFileSize(originalFileSize)})
           </span>
         </div>
         <div>
-          <span className="block text-gray-400 dark:text-gray-500">Target</span>
+          <span className="block text-gray-400 dark:text-gray-500">リサイズ後</span>
           <span>
             {tW} × {tH}
             {resizedFileSize !== null && ` (${formatFileSize(resizedFileSize)})`}
           </span>
         </div>
         <div>
-          <span className="block text-gray-400 dark:text-gray-500">Scale</span>
+          <span className="block text-gray-400 dark:text-gray-500">倍率</span>
           <span>{scalePercent}%</span>
         </div>
       </div>

@@ -22,12 +22,12 @@ export default function ResizeButton({
       {isProcessing ? (
         <>
           <Loader2 className="w-4 h-4 animate-spin" />
-          Processing...
+          処理中...
         </>
       ) : (
         <>
           <Scaling className="w-4 h-4" />
-          Resize
+          リサイズ実行
         </>
       )}
     </button>

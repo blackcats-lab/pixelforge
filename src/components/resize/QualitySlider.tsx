@@ -14,8 +14,8 @@ export default function QualitySlider({
   return (
     <div className={`space-y-2 ${disabled ? "opacity-50" : ""}`}>
       <div className="flex items-center justify-between">
-        <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-          Quality
+        <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+          品質
         </label>
         <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
           {Math.round(quality * 100)}%

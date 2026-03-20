@@ -39,13 +39,13 @@ export default function DimensionInput({
 
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        Size
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+        サイズ
       </label>
       <div className="flex items-center gap-2">
         <div className="flex-1">
           <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">
-            W
+            幅
           </label>
           <input
             type="number"
@@ -59,7 +59,7 @@ export default function DimensionInput({
         <button
           onClick={onToggleLock}
           className="mt-5 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          aria-label={isLocked ? "Unlock aspect ratio" : "Lock aspect ratio"}
+          aria-label={isLocked ? "アスペクト比を解除" : "アスペクト比を固定"}
         >
           {isLocked ? (
             <Lock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -70,7 +70,7 @@ export default function DimensionInput({
 
         <div className="flex-1">
           <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">
-            H
+            高さ
           </label>
           <input
             type="number"
@@ -82,7 +82,7 @@ export default function DimensionInput({
         </div>
       </div>
       <p className="text-xs text-gray-400 dark:text-gray-500">
-        Original: {originalWidth} × {originalHeight}
+        元のサイズ: {originalWidth} × {originalHeight}
       </p>
     </div>
   );

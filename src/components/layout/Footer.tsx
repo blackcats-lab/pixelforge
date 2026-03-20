@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 dark:text-gray-400">
         <div className="flex items-center gap-1.5">
           <Shield className="w-3.5 h-3.5" />
-          <span>All processing is done in your browser. No images are uploaded to any server.</span>
+          <span>すべての処理はブラウザ内で完結します。画像がサーバーにアップロードされることはありません。</span>
         </div>
         <span>PixelForge</span>
       </div>

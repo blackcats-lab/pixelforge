@@ -9,8 +9,8 @@ interface SnsPresetsProps {
 export default function SnsPresets({ onApply }: SnsPresetsProps) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        SNS Presets
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
+        SNS プリセット
       </label>
       <div className="space-y-1">
         {SNS_PRESETS.map((preset) => (

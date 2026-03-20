@@ -48,7 +48,7 @@ export default function PreviewPanel({
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
-            Preview
+            プレビュー
           </button>
           <button
             onClick={() => setViewMode("compare")}
@@ -59,7 +59,7 @@ export default function PreviewPanel({
             }`}
           >
             <SplitSquareHorizontal className="w-3.5 h-3.5" />
-            Compare
+            比較
           </button>
         </div>
       )}

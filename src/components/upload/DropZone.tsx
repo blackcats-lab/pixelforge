@@ -77,13 +77,13 @@ export default function DropZone({
 
         <div className="text-center">
           <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-            {isDragging ? "Drop your image here" : "Upload an image"}
+            {isDragging ? "ここにドロップ" : "画像をアップロード"}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Drag & drop or click to select
+            ドラッグ＆ドロップ または クリックして選択
           </p>
           <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
-            JPEG, PNG, WebP, BMP, GIF, SVG
+            対応形式: JPEG, PNG, WebP, BMP, GIF, SVG
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function DropZone({
           }}
           className="mt-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
         >
-          Select File
+          ファイルを選択
         </button>
 
         <input
