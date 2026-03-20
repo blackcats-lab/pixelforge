@@ -1,31 +1,45 @@
 "use client";
 
+import { useCallback } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Construction } from "lucide-react";
-import Link from "next/link";
+import BatchUploader from "@/components/batch/BatchUploader";
+import BatchList from "@/components/batch/BatchList";
+import BatchDownload from "@/components/batch/BatchDownload";
+import { useBatchStore } from "@/stores/batchStore";
+import { useBatchResize } from "@/hooks/useBatchResize";
 
 export default function BatchPage() {
+  const { items, clearAll } = useBatchStore();
+  const { resizeAll } = useBatchResize();
+
+  const handleClear = useCallback(() => {
+    clearAll();
+  }, [clearAll]);
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header onClear={handleClear} showClear={items.length > 0} />
 
-      <main className="flex-1 flex items-center justify-center">
-        <div className="text-center space-y-4 p-8">
-          <Construction className="w-16 h-16 text-gray-400 mx-auto" />
-          <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-300">
-            一括処理
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 max-w-md">
-            複数画像の一括リサイズ機能は Phase 2 で実装予定です。
-            現在は1枚ずつリサイズできます。
-          </p>
-          <Link
-            href="/"
-            className="inline-block px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
-          >
-            単体リサイズへ
-          </Link>
+      <main className="flex-1">
+        <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+              一括リサイズ
+            </h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              複数の画像をまとめてリサイズし、ZIPでダウンロードできます
+            </p>
+          </div>
+
+          <BatchUploader />
+
+          {items.length > 0 && (
+            <>
+              <BatchList onResizeAll={resizeAll} />
+              <BatchDownload />
+            </>
+          )}
         </div>
       </main>
 

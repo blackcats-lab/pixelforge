@@ -3,11 +3,14 @@
 import DimensionInput from "./DimensionInput";
 import ScalePresets from "./ScalePresets";
 import SnsPresets from "./SnsPresets";
+import CustomPresets from "./CustomPresets";
 import FormatSelect from "./FormatSelect";
 import QualitySlider from "./QualitySlider";
 import ResizeModeToggle from "./ResizeModeToggle";
 import ResizeButton from "./ResizeButton";
+import CanvasWarning from "./CanvasWarning";
 import { useResizeStore } from "@/stores/resizeStore";
+import { useCustomPresets } from "@/hooks/useCustomPresets";
 import type { ImageFormat } from "@/types";
 
 interface SettingsPanelProps {
@@ -39,6 +42,7 @@ export default function SettingsPanel({
 }: SettingsPanelProps) {
   const { format, quality, smoothing, isProcessing, setFormat, setQuality, setSmoothing } =
     useResizeStore();
+  const { presets, addPreset, removePreset } = useCustomPresets();
 
   return (
     <div className="space-y-5 p-4 lg:p-5 overflow-y-auto max-h-[calc(100vh-8rem)]">
@@ -57,6 +61,15 @@ export default function SettingsPanel({
 
       <SnsPresets onApply={onApplyPreset} />
 
+      <CustomPresets
+        presets={presets}
+        onApply={onApplyPreset}
+        onAdd={addPreset}
+        onRemove={removePreset}
+        currentWidth={width}
+        currentHeight={height}
+      />
+
       <FormatSelect
         format={format}
         onFormatChange={(f: ImageFormat) => setFormat(f)}
@@ -72,6 +85,8 @@ export default function SettingsPanel({
         smoothing={smoothing}
         onSmoothingChange={setSmoothing}
       />
+
+      <CanvasWarning targetWidth={width} targetHeight={height} />
 
       <ResizeButton
         onClick={onResize}

@@ -35,3 +35,24 @@ export interface SnsPreset {
   width: number;
   height: number;
 }
+
+export type BatchItemStatus = "pending" | "processing" | "done" | "error";
+
+export interface BatchItem {
+  id: string;
+  file: File;
+  src: string;
+  width: number;
+  height: number;
+  status: BatchItemStatus;
+  resizedDataUrl: string | null;
+  resizedFileSize: number | null;
+  error: string | null;
+}
+
+export interface CustomPreset {
+  id: string;
+  name: string;
+  width: number;
+  height: number;
+}
