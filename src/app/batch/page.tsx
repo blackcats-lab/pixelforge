@@ -8,10 +8,18 @@ import BatchList from "@/components/batch/BatchList";
 import BatchDownload from "@/components/batch/BatchDownload";
 import { useBatchStore } from "@/stores/batchStore";
 import { useBatchResize } from "@/hooks/useBatchResize";
+import { useAdStore } from "@/stores/adStore";
+import InterstitialOverlay from "@/components/ad/InterstitialOverlay";
 
 export default function BatchPage() {
   const { items, clearAll } = useBatchStore();
   const { resizeAll } = useBatchResize();
+  const showAd = useAdStore((s) => s.show);
+
+  const handleResizeAll = useCallback(() => {
+    showAd();
+    resizeAll();
+  }, [showAd, resizeAll]);
 
   const handleClear = useCallback(() => {
     clearAll();
@@ -36,7 +44,7 @@ export default function BatchPage() {
 
           {items.length > 0 && (
             <>
-              <BatchList onResizeAll={resizeAll} />
+              <BatchList onResizeAll={handleResizeAll} />
               <BatchDownload />
             </>
           )}
@@ -44,6 +52,7 @@ export default function BatchPage() {
       </main>
 
       <Footer />
+      <InterstitialOverlay />
     </div>
   );
 }

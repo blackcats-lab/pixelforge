@@ -12,6 +12,8 @@ import { useAspectRatio } from "@/hooks/useAspectRatio";
 import { useCanvasResize } from "@/hooks/useCanvasResize";
 import { useDownload } from "@/hooks/useDownload";
 import { useResizeStore } from "@/stores/resizeStore";
+import { useAdStore } from "@/stores/adStore";
+import InterstitialOverlay from "@/components/ad/InterstitialOverlay";
 import { getDefaultFormat } from "@/lib/file-utils";
 
 export default function HomePage() {
@@ -39,6 +41,7 @@ export default function HomePage() {
 
   const { resize } = useCanvasResize();
   const { download } = useDownload();
+  const showAd = useAdStore((s) => s.show);
   const {
     format,
     resizedDataUrl,
@@ -63,12 +66,13 @@ export default function HomePage() {
 
   const handleResize = useCallback(async () => {
     if (!image || typeof width !== "number" || typeof height !== "number") return;
+    showAd();
     try {
       await resize(image, width, height);
     } catch {
       alert("リサイズ処理に失敗しました。");
     }
-  }, [image, width, height, resize]);
+  }, [image, width, height, resize, showAd]);
 
   const handleDownload = useCallback(() => {
     if (!image || !resizedDataUrl || typeof width !== "number" || typeof height !== "number")
@@ -161,6 +165,7 @@ export default function HomePage() {
       </main>
 
       <Footer />
+      <InterstitialOverlay />
     </div>
   );
 }
