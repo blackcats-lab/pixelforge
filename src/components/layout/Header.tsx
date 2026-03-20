@@ -17,6 +17,7 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef, useCallback } from "react";
 
 interface HeaderProps {
@@ -26,9 +27,11 @@ interface HeaderProps {
 
 export default function Header({ onClear, showClear }: HeaderProps) {
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const helpRef = useRef<HTMLDivElement>(null);
+  const isBatchPage = pathname === "/batch";
 
   useEffect(() => {
     setMounted(true);
@@ -73,11 +76,20 @@ export default function Header({ onClear, showClear }: HeaderProps) {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/batch"
+            href={isBatchPage ? "/" : "/batch"}
             className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <Layers className="w-4 h-4" />
-            <span className="hidden sm:inline">一括処理</span>
+            {isBatchPage ? (
+              <>
+                <ImageDown className="w-4 h-4" />
+                <span className="hidden sm:inline">単一処理</span>
+              </>
+            ) : (
+              <>
+                <Layers className="w-4 h-4" />
+                <span className="hidden sm:inline">一括処理</span>
+              </>
+            )}
           </Link>
 
           {/* Help button */}
