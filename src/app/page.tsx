@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ImageIcon, Shield, Zap, Layers } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DropZone from "@/components/upload/DropZone";
@@ -12,8 +13,6 @@ import { useAspectRatio } from "@/hooks/useAspectRatio";
 import { useCanvasResize } from "@/hooks/useCanvasResize";
 import { useDownload } from "@/hooks/useDownload";
 import { useResizeStore } from "@/stores/resizeStore";
-import { useAdStore } from "@/stores/adStore";
-import InterstitialOverlay from "@/components/ad/InterstitialOverlay";
 import { getDefaultFormat } from "@/lib/file-utils";
 
 export default function HomePage() {
@@ -41,7 +40,6 @@ export default function HomePage() {
 
   const { resize } = useCanvasResize();
   const { download } = useDownload();
-  const showAd = useAdStore((s) => s.show);
   const {
     format,
     resizedDataUrl,
@@ -66,13 +64,12 @@ export default function HomePage() {
 
   const handleResize = useCallback(async () => {
     if (!image || typeof width !== "number" || typeof height !== "number") return;
-    showAd();
     try {
       await resize(image, width, height);
     } catch {
       alert("リサイズ処理に失敗しました。");
     }
-  }, [image, width, height, resize, showAd]);
+  }, [image, width, height, resize]);
 
   const handleDownload = useCallback(() => {
     if (!image || !resizedDataUrl || typeof width !== "number" || typeof height !== "number")
@@ -110,14 +107,91 @@ export default function HomePage() {
         <h1 className="sr-only">PixelForge — ブラウザ完結型 画像リサイズツール</h1>
         <AnimatePresence mode="wait">
           {!image ? (
-            <DropZone
-              key="dropzone"
-              fileInputRef={fileInputRef}
-              onFileChange={handleFileChange}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onOpenFileDialog={openFileDialog}
-            />
+            <div key="dropzone">
+              <DropZone
+                fileInputRef={fileInputRef}
+                onFileChange={handleFileChange}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onOpenFileDialog={openFileDialog}
+              />
+
+              {/* Landing content section for SEO & AdSense compliance */}
+              <section className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+                <div className="text-center space-y-3">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                    PixelForge とは
+                  </h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    PixelForge は、ブラウザだけで画像リサイズが完結する無料ツールです。
+                    画像をサーバーにアップロードする必要がないため、プライバシーを守りながら
+                    PNG・JPEG・WebP 形式の画像を自由にリサイズできます。
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="flex flex-col items-center text-center gap-2 p-4">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">プライバシー保護</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      画像はブラウザ内で処理され、外部サーバーに送信されません
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center text-center gap-2 p-4">
+                    <div className="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-950 flex items-center justify-center">
+                      <ImageIcon className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">複数フォーマット対応</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      PNG、JPEG、WebP に対応。品質調整も自由自在
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center text-center gap-2 p-4">
+                    <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950 flex items-center justify-center">
+                      <Layers className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">一括リサイズ</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      複数画像をまとめてリサイズし、ZIPでダウンロード
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center text-center gap-2 p-4">
+                    <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-950 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">SNSプリセット</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      X(Twitter)、Instagram など主要SNS向けサイズをワンクリックで
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 space-y-4">
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 text-center">
+                    使い方（3ステップ）
+                  </h3>
+                  <ol className="space-y-3 max-w-md mx-auto">
+                    <li className="flex gap-3 items-start">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">上のエリアに画像をドラッグ＆ドロップ、またはクリックして選択</p>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">サイズやフォーマットを設定して「リサイズ実行」をクリック</p>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">プレビューを確認し、ダウンロードボタンで保存</p>
+                    </li>
+                  </ol>
+                </div>
+              </section>
+            </div>
           ) : (
             <motion.div
               key="editor"
@@ -166,7 +240,6 @@ export default function HomePage() {
       </main>
 
       <Footer />
-      <InterstitialOverlay />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import ImagePreview from "./ImagePreview";
 import CompareSlider from "./CompareSlider";
 import ImageInfo from "./ImageInfo";
 import DownloadButton from "./DownloadButton";
+import InlineAdBanner from "@/components/ad/InlineAdBanner";
 import { Eye, SplitSquareHorizontal } from "lucide-react";
 
 interface PreviewPanelProps {
@@ -81,6 +82,9 @@ export default function PreviewPanel({
         targetHeight={targetHeight}
         resizedFileSize={resizedFileSize}
       />
+
+      {/* Inline Ad — only shown after resize (with publisher content present) */}
+      {resizedSrc && <InlineAdBanner className="pt-2" />}
 
       {/* Download */}
       <DownloadButton onClick={onDownload} disabled={!resizedSrc} />
