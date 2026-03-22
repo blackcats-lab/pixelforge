@@ -14,7 +14,7 @@ export default function TermsPage() {
           利用規約
         </h1>
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          最終更新日: 2025年3月22日
+          最終更新日: 2026年3月22日
         </p>
 
         <section className="space-y-3">
