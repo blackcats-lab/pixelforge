@@ -7,6 +7,7 @@ interface InlineAdBannerProps {
 }
 
 export default function InlineAdBanner({ className }: InlineAdBannerProps) {
+  const adsEnabled = process.env.NEXT_PUBLIC_ADS_ENABLED !== "false";
   const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
   const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT;
   const insRef = useRef<HTMLModElement>(null);
@@ -15,7 +16,7 @@ export default function InlineAdBanner({ className }: InlineAdBannerProps) {
 
   // Dynamically load AdSense script if not already loaded
   useEffect(() => {
-    if (!adClient) return;
+    if (!adsEnabled || !adClient) return;
     if (document.querySelector(`script[src*="pagead2.googlesyndication.com"]`)) return;
 
     const script = document.createElement("script");
@@ -37,7 +38,7 @@ export default function InlineAdBanner({ className }: InlineAdBannerProps) {
     }
   }, [adClient, adSlot, adFailed]);
 
-  if (!adClient || !adSlot || adFailed) {
+  if (!adsEnabled || !adClient || !adSlot || adFailed) {
     return null;
   }
 

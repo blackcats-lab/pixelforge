@@ -92,6 +92,13 @@ export default function Header({ onClear, showClear }: HeaderProps) {
             )}
           </Link>
 
+          <Link
+            href="/guides/sns-image-sizes"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            <span>ガイド</span>
+          </Link>
+
           {/* Help button */}
           <div className="relative" ref={helpRef}>
             <button
